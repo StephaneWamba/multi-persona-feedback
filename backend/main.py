@@ -6,6 +6,7 @@ from database import engine
 from models import Base
 from auth_routes import router as auth_router
 from pdf_routes import router as pdf_router
+from session_routes import router as session_router
 
 # Load environment variables
 load_dotenv()
@@ -32,6 +33,7 @@ app.add_middleware(
 # Include routers
 app.include_router(auth_router)
 app.include_router(pdf_router)
+app.include_router(session_router)
 
 
 @app.get("/")
@@ -46,6 +48,7 @@ async def health_check():
         "message": "API is operational",
         "version": "1.0.0"
     }
+
 
 if __name__ == "__main__":
     import uvicorn
